@@ -16,68 +16,22 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                use: 'babel-loader',
                 exclude: '/node_modules/',
             }
         ],
     },
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'bundle.js',
+        path: path.join(__dirname, "dist"),
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'index.html')
+            template: path.join(__dirname, 'index.html'),
+            filename: 'index.html'
         }),
         new TSLintPlugin({
             files: ['./src/**/*.tsx']
         })
     ]
 }
-
-
-
-
-
-
-
-// const HtmlWebPackPlugin = require('html-webpack-plugin');
-// module.exports = {
-//     context: __dirname,
-//     entry: './src/index.tsx',
-//     devtool: "source-map",
-//     devServer: {
-//         historyApiFallback: true
-//     },
-//     resolve: {
-//         // Add '.ts' and '.tsx' as resolvable extensions.
-//         extensions: [".ts", ".tsx"]
-//     },
-//     module: {
-//         rules: [
-//             {
-//                 test: /\.ts(x?)$/,
-//                 exclude: /node_modules/,
-//                 use: [
-//                     {
-//                         loader: "ts-loader"
-//                     }
-//                 ]
-//             },
-//             {
-//                 enforce: "pre",
-//                 test: /\.js$/,
-//                 loader: "source-map-loader"
-//             }
-//         ]
-//     },
-//     plugins: [
-//         new HtmlWebPackPlugin({
-//             template: 'index.html'
-//         })
-//     ],
-//     externals: {
-//         "react": "React",
-//         "react-dom": "ReactDOM"
-//     }
-// };

@@ -1,11 +1,15 @@
 {
   "name": "XT-rick-n-morty",
   "version": "1.0.0",
-  "main": "index.js",
+  "homepage": "https://Akansh111.github.io/rick-n-morty",
+  "main": "dist/index.tsx",
   "scripts": {
     "dev": "webpack --mode development --progress",
     "build": "webpack --mode production --progress",
-    "start": "webpack-dev-server --open --port 3000 --compress --mode development"
+    "start": "webpack-dev-server --open --port 3000 --compress --mode development",
+    "deploy": "gh-pages -d dist",
+    "transpile": "babel src -d dist --copy-files",
+    "prepublishOnly": "npm run transpile"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "babel-loader": "^8.1.0",
+    "gh-pages": "^2.2.0",
     "html-webpack-plugin": "^4.3.0",
     "path": "^0.12.7",
     "prettier": "^2.0.5",
