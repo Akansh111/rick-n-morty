@@ -29,12 +29,6 @@
         "no-submodule-imports": false,
         "no-var-requires": false,
         "no-unused-variable": true,
-        "trailing-comma": false,
-        "variable-name": [
-            true,
-            "ban-keywords",
-            "check-format",
-            "allow-leading-underscore"
-        ]
+        "trailing-comma": false
     }
 }

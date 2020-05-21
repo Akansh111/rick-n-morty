@@ -1,0 +1,66 @@
+.search-n-sort {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0px;
+    .search {
+        width: 300px;
+    }
+    .sort {
+        width: 100px;
+    }
+}
+
+.selected-filters-header {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card-container {
+    border: 1px saddlebrown !important;
+    width: 280px;
+    display: inline-block !important;
+    padding: 7px;
+    .card-img-top {
+        height: 220px;
+    }
+    .card-desc {
+        position: absolute;
+        bottom: 246px;
+        width: 266px;
+        height: 60px;
+        background: #333333;
+        opacity: 0.7;
+        margin-bottom: 0px;
+        color: #eae2e2;
+        padding: 5px;
+        .character-name {
+            font-size: 22px;
+        }
+        .character-id {
+            font-size: 11px;
+        }
+    }
+    .card-body {
+        background: #333333;
+        height: 239px;
+        .card-text {
+            font-size: 13px;
+            .card-info {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #b1a8a8;
+                padding: 8px 0px;
+                border-bottom: 0.01rem solid #b1a8a8;
+                .key {
+                    color: #b1a8a8;
+                }
+                .value {
+                    color: #c78834;
+                }
+            }
+        }
+    }
+}
+
+
+
