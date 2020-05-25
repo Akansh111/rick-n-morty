@@ -4,7 +4,6 @@ import { CharacterInfo } from '../model';
 
 const truncate = (input: string) => input.length > 21 ? `${input.substring(0, 21)}...` : input;
 
-
 export const CharacterCard = ({ charactersData }: { charactersData: CharacterInfo[] | undefined }) => {
     return (
         <>

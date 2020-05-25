@@ -7,15 +7,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import './RightPane.scss';
 import { CharacterCard } from './CharacterCard';
-import { CharacterInfo, FiltersType } from '../model';
+import { CharacterInfo, FiltersType, RightPaneProps } from '../model';
 
-export const RightPane = ({ charactersData, showLoader, filters, searchCharacters, updateSorting }:
-    {
-        charactersData: CharacterInfo[], showLoader: boolean,
-        filters: FiltersType[],
-        searchCharacters: (data: CharacterInfo[]) => void,
-        updateSorting: (data: CharacterInfo[]) => void
-    }) => {
+export const RightPane = ({ charactersData, showLoader, filters, searchCharacters, updateSorting }: RightPaneProps) => {
 
     const [inputSearch, setInputSearch] = React.useState<string>('');
 

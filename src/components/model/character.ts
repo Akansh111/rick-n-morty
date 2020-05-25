@@ -1,3 +1,5 @@
+import { FiltersType } from "./filters";
+
 export interface CharacterInfo {
     name: string,
     gender: string,
@@ -11,4 +13,12 @@ export interface CharacterInfo {
     location: {
         name: string
     }
+}
+
+export interface RightPaneProps {
+    charactersData: CharacterInfo[];
+    showLoader: boolean;
+    filters: FiltersType[];
+    searchCharacters: (data: CharacterInfo[]) => void;
+    updateSorting: (data: CharacterInfo[]) => void
 }
