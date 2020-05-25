@@ -4,5 +4,6 @@ export interface FiltersType {
 }
 
 export interface FilterTypeProps {
-    filter: FiltersType[]
+    filter: FiltersType[],
+    selectedFilters: (filters: FiltersType[]) => void;
 }

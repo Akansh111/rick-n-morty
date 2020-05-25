@@ -6,18 +6,27 @@
         width: 300px;
     }
     .sort {
-        width: 100px;
+        width: 140px;
     }
 }
 
 .selected-filters-header {
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 5px;
+}
+.selected-filter-tag {
+    background: #333333;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 0px 4px;
+    color: #d4cccc;
 }
 
 .card-container {
     border: 1px saddlebrown !important;
-    width: 280px;
+    // width: 280px;
+    width:270px;
     display: inline-block !important;
     padding: 7px;
     .card-img-top {
@@ -26,7 +35,7 @@
     .card-desc {
         position: absolute;
         bottom: 246px;
-        width: 266px;
+        width: 256px;
         height: 60px;
         background: #333333;
         opacity: 0.7;
@@ -56,11 +65,15 @@
                 }
                 .value {
                     color: #c78834;
+                    text-align: right;
                 }
             }
         }
     }
 }
 
-
+.character-card {
+    height: 70vh;
+    overflow: auto;
+}
 

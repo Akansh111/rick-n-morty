@@ -4,3 +4,13 @@
     font-size: 35px;
     padding: 30px;
 }
+
+.App {
+    background-image: url(./images/background.jpg);
+    height: 100vh;
+    background-size: cover;
+}
+
+body {
+    overflow-y: hidden;
+}

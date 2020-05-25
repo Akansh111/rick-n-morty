@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { speciesFilters, genderFilters, statusFilters } from '../constants';
+import { filters } from '../constants';
 import { FilterContainer } from './FilterContainer';
 import './LeftPane.css';
+import { FiltersType } from '../model';
 
-export const LeftPane = () => {
+export const LeftPane = ({ selectedFilters }: { selectedFilters: (filters: FiltersType[]) => void }) => {
 
     return (
         <>
@@ -11,13 +12,7 @@ export const LeftPane = () => {
                 Filters
             </div>
             <div className="filter-container">
-                <FilterContainer filter={speciesFilters} />
-            </div>
-            <div className="filter-container">
-                <FilterContainer filter={genderFilters} />
-            </div>
-            <div className="filter-container">
-                <FilterContainer filter={statusFilters} />
+                <FilterContainer filter={filters} selectedFilters={selectedFilters} />
             </div>
         </>
     )

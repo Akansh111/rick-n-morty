@@ -7,52 +7,90 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import './RightPane.scss';
 import { CharacterCard } from './CharacterCard';
-import api from '../services/api';
-import { CharacterInfo } from '../model';
+import { CharacterInfo, FiltersType } from '../model';
 
-export const RightPane = () => {
+export const RightPane = ({ charactersData, showLoader, filters, searchCharacters, updateSorting }:
+    {
+        charactersData: CharacterInfo[], showLoader: boolean,
+        filters: FiltersType[],
+        searchCharacters: (data: CharacterInfo[]) => void,
+        updateSorting: (data: CharacterInfo[]) => void
+    }) => {
 
-    const [characters, setCharacters] = React.useState<CharacterInfo[] | undefined>(undefined);
-    React.useEffect(() => {
-        async function loadData() {
-            // setLoading(true);
-            const apiResponse = await api.get(`/?page=1`);
-            setCharacters(apiResponse.data.results);
-            // setLoading(false);
+    const [inputSearch, setInputSearch] = React.useState<string>('');
+
+    const handleChange = ((e: any) => {
+        setInputSearch(e.target.value);
+    })
+
+    const handleSearch = () => {
+        const tempSearch = [...charactersData];
+        const results = tempSearch.filter((char: CharacterInfo) => {
+            return char.name.toLowerCase().includes(inputSearch.toLowerCase());
+        })
+        searchCharacters(results);
+        setInputSearch('');
+    }
+
+    const handleOnKeyDown = (e: any) => {
+        if (e.key === 'Enter') {
+            handleSearch();
         }
+    }
 
-        loadData();
-    }, []);
+    const handleSort = (type: string) => {
+        const tempAsc = [...charactersData];
+        tempAsc?.sort((a: CharacterInfo, b: CharacterInfo) => {
+            if (type === 'asc') {
+                return a.id > b.id ? 1 : -1
+            } else {
+                return a.id > b.id ? -1 : 1
+            }
+        })
+        updateSorting(tempAsc);
+    }
     return (
         <>
             <div className="selected-filters-header">
-                Selected Filters
+                {filters && filters.length > 0 ? 'Selected Filters' : ''}
             </div>
-            <div className="selected-filters-list">
-                Human Alive
-            </div>
+            {
+                filters && filters.map((el: FiltersType, i: number) => {
+                    return (
+                        <span className="selected-filter-tag" key={i}>
+                            {el.value}
+                        </span>
+                    )
+                })
+            }
             <div className="search-n-sort">
                 <div className="search">
                     <InputGroup>
                         <FormControl
                             placeholder="Search By Name"
                             aria-label="Seach by Name"
+                            onChange={(e) => { handleChange(e) }}
+                            value={inputSearch}
+                            onKeyDown={(e: any) => handleOnKeyDown(e)}
                         />
                         <InputGroup.Append>
-                            <Button variant="outline-secondary">Search</Button>
+                            <Button variant="outline-secondary" onClick={handleSearch} >Search</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </div>
                 <div className="sort">
-                    <DropdownButton id="dropdown-item-button" title="Sort">
-                        <Dropdown.Item as="button">Ascending</Dropdown.Item>
-                        <Dropdown.Item as="button">Descending</Dropdown.Item>
+                    <DropdownButton id="dropdown-item-button" title="Sort By ID">
+                        <Dropdown.Item as="button" onSelect={() => handleSort('asc')}>Ascending</Dropdown.Item>
+                        <Dropdown.Item as="button" onSelect={() => handleSort('desc')}>Descending</Dropdown.Item>
                     </DropdownButton>
                 </div>
             </div>
-            <div className="character-card">
-                <CharacterCard charactersData={characters} />
-            </div>
+            {
+                showLoader ? (<h4>Loading...</h4>) :
+                    <div className="character-card">
+                        <CharacterCard charactersData={charactersData} />
+                    </div>
+            }
         </>
     )
 }
